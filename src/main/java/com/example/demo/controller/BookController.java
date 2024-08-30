@@ -9,8 +9,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,4 +38,18 @@ public class BookController {
 		
 	}
 
+	@GetMapping("/msg/{msg}")
+	public String msg(@PathVariable String msg){
+		return "msg";
+	}
+
+	@GetMapping("/success")
+	public ResponseEntity<String> successMethod (){
+		return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+
+	@GetMapping("/found")
+	private ResponseEntity<String> notFoundMethod(){
+		return new ResponseEntity<>("Not Found",HttpStatus.NOT_FOUND);
+	}
 }
